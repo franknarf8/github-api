@@ -572,6 +572,8 @@ public class GHRepositoryRule extends GitHubInteractiveObject {
 
     private String type;
 
+    protected GHObject owner;
+
     /**
      * Create default GHRepositoryRule instance
      */
@@ -634,5 +636,17 @@ public class GHRepositoryRule extends GitHubInteractiveObject {
      */
     public Type getType() {
         return EnumUtils.getEnumOrDefault(Type.class, this.type, Type.UNKNOWN);
+    }
+
+    /**
+     * Wrap gh project.
+     *
+     * @param repo
+     *            the repo
+     * @return the gh project
+     */
+    GHRepositoryRule lateBind(GHRepository repo) {
+        this.owner = repo;
+        return this;
     }
 }

@@ -2895,6 +2895,28 @@ public class GHRepository extends GHObject {
     }
 
     /**
+     * Get all repository rulesets
+     * (https://docs.github.com/en/rest/repos/rules?apiVersion=2022-11-28#get-all-repository-rulesets).
+     *
+     * @return all the rules configured in the repository
+     */
+
+    public PagedIterable<GHRepositoryRuleset> listAllRulesets() {
+        return root().createRequest()
+            .method("GET")
+            .withUrlPath(getApiTailUrl("rulesets"))
+            .toIterable(GHRepositoryRuleset[].class, item -> item.lateBind(this));
+    }
+
+    public GHRepositoryRuleset getRulesetById(long rulesetId) throws IOException {
+        return root().createRequest()
+            .method("GET")
+            .withUrlPath(getApiTailUrl("rulesets/" + rulesetId))
+            .fetch(GHRepositoryRuleset.class)
+            .lateBind(this);
+    }
+
+    /**
      * Lists all the users who have starred this repo based on new version of the API, having extended information like
      * the time when the repository was starred.
      *

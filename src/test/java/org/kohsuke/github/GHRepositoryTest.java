@@ -1480,6 +1480,53 @@ public class GHRepositoryTest extends AbstractGitHubWireMockTest {
                 equalTo(Visibility.UNKNOWN));
     }
 
+    @Test
+    public void testGetAllRulesets() throws Exception {
+        GHRepository repo = getRepository();
+        List<GHRepositoryRuleset> rulesets = repo.listAllRulesets().toList();
+
+        assertThat(rulesets.size(), equalTo(3));
+
+        GHRepositoryRuleset firstRuleset = rulesets.get(0);
+        assertThat(firstRuleset.getId(), equalTo(2130519L));
+        assertThat(firstRuleset.getName(), equalTo("PRs Check"));
+        assertThat(firstRuleset.getSource(), equalTo("hub4j-test-org"));
+        assertThat(firstRuleset.getSourceType(), equalTo(GHRepositoryRuleset.RulesetSourceType.ORGANIZATION));
+        assertThat(firstRuleset.getTarget(), equalTo(GHRepositoryRuleset.RulesetTarget.BRANCH));
+        assertThat(firstRuleset.getEnforcement(), equalTo(GHRepositoryRuleset.RulesetEnforcement.ACTIVE));
+        assertThat(firstRuleset.getCurrentUserCanBypass(), equalTo(GHRepositoryRuleset.RulesetBypass.UNKNOWN));
+        assertThat(firstRuleset.getNodeId(), equalTo("RRS_lACkVXNlcs4JgswZzgAgglo"));
+        assertThat(firstRuleset.getRules(), equalTo(null));
+        assertThat(firstRuleset.getCreatedAt().toString(), equalTo("2024-10-07T18:59:26.550Z"));
+        assertThat(firstRuleset.getUpdatedAt().toString(), equalTo("2025-08-26T20:13:34.722Z"));
+        assertThat(firstRuleset.owner, equalTo(repo));
+    }
+
+    @Test
+    public void testGetRulesetById() throws Exception {
+        GHRepository repo = getRepository();
+        GHRepositoryRuleset ruleset = repo.getRulesetById(634371L);
+
+        assertThat(ruleset.getId(), equalTo(634371L));
+        assertThat(ruleset.getName(), equalTo("default_org_block_force_pushes"));
+        assertThat(ruleset.getSource(), equalTo("hub4j-test-org"));
+        assertThat(ruleset.getSourceType(), equalTo(GHRepositoryRuleset.RulesetSourceType.ORGANIZATION));
+        assertThat(ruleset.getTarget(), equalTo(GHRepositoryRuleset.RulesetTarget.BRANCH));
+        assertThat(ruleset.getEnforcement(), equalTo(GHRepositoryRuleset.RulesetEnforcement.ACTIVE));
+        assertThat(ruleset.getCurrentUserCanBypass(), equalTo(GHRepositoryRuleset.RulesetBypass.NEVER));
+        assertThat(ruleset.getNodeId(), equalTo("RRS_lACkVXNlcs4JgswZzgAJrgM"));
+        assertThat(ruleset.getRules().get(0).getType(), equalTo(GHRepositoryRule.Type.NON_FAST_FORWARD));
+        assertThat(ruleset.getCreatedAt().toString(), equalTo("2024-04-11T10:54:26.899Z"));
+        assertThat(ruleset.getUpdatedAt().toString(), equalTo("2025-08-26T20:13:49.221Z"));
+        assertThat(ruleset.getConditions().getRefName().include, equalTo(List.of(
+            "refs/heads/develop",
+            "refs/heads/master",
+            "refs/heads/main"
+        )));
+        assertThat(ruleset.owner, equalTo(repo));
+    }
+
+
     /**
      * Test getRulesForBranch.
      *

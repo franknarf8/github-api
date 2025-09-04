@@ -1,0 +1,59 @@
+[
+  {
+    "id": 2130519,
+    "name": "PRs Check",
+    "target": "branch",
+    "source_type": "Organization",
+    "source": "hub4j-test-org",
+    "enforcement": "active",
+    "node_id": "RRS_lACkVXNlcs4JgswZzgAgglo",
+    "_links": {
+      "self": {
+        "href": "https://api.github.com/repos/hub4j-test-org/github-api/rulesets/2130519"
+      },
+      "html": {
+        "href": "https://github.com/hub4j-test-org/github-api/rules/2130519"
+      }
+    },
+    "created_at": "2024-10-07T14:59:26.550-04:00",
+    "updated_at": "2025-08-26T16:13:34.722-04:00"
+  },
+  {
+    "id": 7855179,
+    "name": "test-tag-ruleset",
+    "target": "tag",
+    "source_type": "Repository",
+    "source": "hub4j-test-org/github-api",
+    "enforcement": "disabled",
+    "node_id": "RRS_lACqUmVwb3NpdG9yec4u_a9lzgB33Es",
+    "_links": {
+      "self": {
+        "href": "https://api.github.com/repos/hub4j-test-org/github-api/rulesets/7855179"
+      },
+      "html": {
+        "href": "https://github.com/hub4j-test-org/github-api/rules/7855179"
+      }
+    },
+    "created_at": "2025-09-03T10:36:03.770-04:00",
+    "updated_at": "2025-09-03T10:36:03.865-04:00"
+  },
+  {
+    "id": 7855262,
+    "name": "push-ruleset",
+    "target": "push",
+    "source_type": "Repository",
+    "source": "hub4j-test-org/github-api",
+    "enforcement": "evaluate",
+    "node_id": "RRS_lACqUmVwb3NpdG9yec4u_a9lzgB33J4",
+    "_links": {
+      "self": {
+        "href": "https://api.github.com/repos/hub4j-test-org/github-api/rulesets/7855262"
+      },
+      "html": {
+        "href": "https://github.com/hub4j-test-org/github-api/rules/7855262"
+      }
+    },
+    "created_at": "2025-09-03T10:37:58.725-04:00",
+    "updated_at": "2025-09-03T10:37:58.766-04:00"
+  }
+]
